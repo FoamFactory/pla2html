@@ -1,0 +1,2466 @@
+
+
+[10000] Autumn's Early Arrival Blonde (Batch: 10000)
+    
+    child 89
+    child 90
+    child 91
+    child 240
+    child 241
+    child 242
+    child 6
+    child 7
+    child 68
+    child 69
+    child 70
+    child 192
+    child 193
+    child 194
+
+[89] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-20 16
+    
+    res Mash Tun 15G G10
+    
+
+[90] Brewing Transfer (from Mash Tun 15G G10 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-20 22
+    
+    res Pumper
+    res Mash Tun 15G G10
+    res Mash Tun 15G G10
+    dep 89
+
+[91] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-20 22
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 90
+
+[240] Primary Fermentation Process (Fermentor 15G G10 3)
+    duration 224
+    start 2020-10-20 22
+    
+    res Fermentor 15G G10 3
+    dep 91
+
+[241] Primary Fermentation Transfer (from Fermentor 15G G10 3 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-30 06
+    
+    res Pumper
+    res Fermentor 15G G10 3
+    res Mash Tun 15G G10
+    dep 240
+
+[242] Primary Fermentation Clean (Fermentor 15G G10 3)
+    duration 0
+    start 2020-10-30 06
+    
+    res Cleaner
+    res Fermentor 15G G10 3
+    dep 241
+
+[6] Secondary Fermentation Process (Fermentor 15G G10 2)
+    duration 888
+    start 2020-10-30 06
+    
+    res Fermentor 15G G10 2
+    dep 242
+
+[7] Secondary Fermentation Clean (Fermentor 15G G10 2)
+    duration 0
+    start 2020-12-06 07
+    
+    res Cleaner
+    res Fermentor 15G G10 2
+    dep 6
+
+[68] Aging Process (Keg 5G 2)
+    duration 888
+    start 2020-12-06 07
+    
+    res Keg 5G 2
+    dep 7
+
+[69] Aging Transfer (from Keg 5G 2 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-12 07
+    
+    res Pumper
+    res Keg 5G 2
+    res Mash Tun 15G G10
+    dep 68
+
+[70] Aging Clean (Keg 5G 2)
+    duration 0
+    start 2021-01-12 07
+    
+    res Cleaner
+    res Keg 5G 2
+    dep 69
+
+[192] Carbonation Process (CO2 Tank 5Lb G10 1)
+    duration 56
+    start 2021-01-12 07
+    
+    res CO2 Tank 5Lb G10 1
+    dep 70
+
+[193] Carbonation Transfer (from CO2 Tank 5Lb G10 1 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-14 15
+    
+    res Pumper
+    res CO2 Tank 5Lb G10 1
+    res Mash Tun 15G G10
+    dep 192
+
+[194] Carbonation Clean (CO2 Tank 5Lb G10 1)
+    duration 0
+    start 2021-01-14 15
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 1
+    dep 193
+
+[80000] Autumn's Early Arrival Blonde (Batch: 80000)
+    
+    child 168
+    child 169
+    child 170
+    child 203
+    child 204
+    child 205
+    child 222
+    child 223
+    child 224
+    child 128
+    child 129
+    child 47
+    child 48
+
+[168] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-13 20
+    
+    res Mash Tun 15G G10
+    
+
+[169] Brewing Transfer (from Mash Tun 15G G10 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-14 03
+    
+    res Pumper
+    res Mash Tun 15G G10
+    res Mash Tun 15G G10
+    dep 168
+
+[170] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-14 03
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 169
+
+[203] Primary Fermentation Process (Fermentor 15G G10 2)
+    duration 224
+    start 2020-10-14 03
+    
+    res Fermentor 15G G10 2
+    dep 170
+
+[204] Primary Fermentation Transfer (from Fermentor 15G G10 2 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-23 11
+    
+    res Pumper
+    res Fermentor 15G G10 2
+    res Mash Tun 15G G10
+    dep 203
+
+[205] Primary Fermentation Clean (Fermentor 15G G10 2)
+    duration 0
+    start 2020-10-23 11
+    
+    res Cleaner
+    res Fermentor 15G G10 2
+    dep 204
+
+[222] Secondary Fermentation Process (Fermentor 15G G10 3)
+    duration 888
+    start 2020-10-23 11
+    
+    res Fermentor 15G G10 3
+    dep 205
+
+[223] Secondary Fermentation Transfer (from Fermentor 15G G10 3 to Mash Tun 15G G10)
+    duration 0
+    start 2020-11-29 11
+    
+    res Pumper
+    res Fermentor 15G G10 3
+    res Mash Tun 15G G10
+    dep 222
+
+[224] Secondary Fermentation Clean (Fermentor 15G G10 3)
+    duration 0
+    start 2020-11-29 11
+    
+    res Cleaner
+    res Fermentor 15G G10 3
+    dep 223
+
+[128] Aging Process (Keg 5G 11)
+    duration 888
+    start 2020-11-29 11
+    
+    res Keg 5G 11
+    dep 224
+
+[129] Aging Clean (Keg 5G 11)
+    duration 0
+    start 2021-01-05 11
+    
+    res Cleaner
+    res Keg 5G 11
+    dep 128
+
+[47] Carbonation Process (CO2 Tank 5Lb G10 2)
+    duration 56
+    start 2021-01-05 11
+    
+    res CO2 Tank 5Lb G10 2
+    dep 129
+
+[48] Carbonation Clean (CO2 Tank 5Lb G10 2)
+    duration 0
+    start 2021-01-07 19
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 2
+    dep 47
+
+[30000] Autumn's Early Arrival Blonde (Batch: 30000)
+    
+    child 125
+    child 126
+    child 127
+    child 54
+    child 55
+    child 56
+    child 162
+    child 163
+    child 164
+    child 22
+    child 23
+    child 24
+    child 251
+    child 252
+    child 253
+
+[125] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-14 09
+    
+    res Mash Tun 15G G10
+    
+
+[126] Brewing Transfer (from Mash Tun 15G G10 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-14 15
+    
+    res Pumper
+    res Mash Tun 15G G10
+    res Mash Tun 15G G10
+    dep 125
+
+[127] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-14 15
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 126
+
+[54] Primary Fermentation Process (Fermentor 15G G10 1)
+    duration 224
+    start 2020-10-14 15
+    
+    res Fermentor 15G G10 1
+    dep 127
+
+[55] Primary Fermentation Transfer (from Fermentor 15G G10 1 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-23 23
+    
+    res Pumper
+    res Fermentor 15G G10 1
+    res Mash Tun 15G G10
+    dep 54
+
+[56] Primary Fermentation Clean (Fermentor 15G G10 1)
+    duration 0
+    start 2020-10-23 23
+    
+    res Cleaner
+    res Fermentor 15G G10 1
+    dep 55
+
+[162] Secondary Fermentation Process (Fermentor 15G G10 4)
+    duration 888
+    start 2020-10-23 23
+    
+    res Fermentor 15G G10 4
+    dep 56
+
+[163] Secondary Fermentation Transfer (from Fermentor 15G G10 4 to Mash Tun 15G G10)
+    duration 0
+    start 2020-11-29 23
+    
+    res Pumper
+    res Fermentor 15G G10 4
+    res Mash Tun 15G G10
+    dep 162
+
+[164] Secondary Fermentation Clean (Fermentor 15G G10 4)
+    duration 0
+    start 2020-11-30 00
+    
+    res Cleaner
+    res Fermentor 15G G10 4
+    dep 163
+
+[22] Aging Process (Keg 5G 4)
+    duration 888
+    start 2020-11-30 00
+    
+    res Keg 5G 4
+    dep 164
+
+[23] Aging Transfer (from Keg 5G 4 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-06 00
+    
+    res Pumper
+    res Keg 5G 4
+    res Mash Tun 15G G10
+    dep 22
+
+[24] Aging Clean (Keg 5G 4)
+    duration 0
+    start 2021-01-06 00
+    
+    res Cleaner
+    res Keg 5G 4
+    dep 23
+
+[251] Carbonation Process (CO2 Tank 5Lb G10 2)
+    duration 56
+    start 2021-01-06 00
+    
+    res CO2 Tank 5Lb G10 2
+    dep 24
+
+[252] Carbonation Transfer (from CO2 Tank 5Lb G10 2 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-08 08
+    
+    res Pumper
+    res CO2 Tank 5Lb G10 2
+    res Mash Tun 15G G10
+    dep 251
+
+[253] Carbonation Clean (CO2 Tank 5Lb G10 2)
+    duration 0
+    start 2021-01-08 08
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 2
+    dep 252
+
+[50000] Autumn's Early Arrival Blonde (Batch: 50000)
+    
+    child 42
+    child 43
+    child 44
+    child 1
+    child 2
+    child 243
+    child 244
+    child 14
+    child 15
+    child 16
+    child 176
+    child 177
+
+[42] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-19 15
+    
+    res Mash Tun 15G G10
+    
+
+[43] Brewing Transfer (from Mash Tun 15G G10 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-19 21
+    
+    res Pumper
+    res Mash Tun 15G G10
+    res Mash Tun 15G G10
+    dep 42
+
+[44] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-19 21
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 43
+
+[1] Primary Fermentation Process (Fermentor 15G G10 2)
+    duration 224
+    start 2020-10-19 21
+    
+    res Fermentor 15G G10 2
+    dep 44
+
+[2] Primary Fermentation Clean (Fermentor 15G G10 2)
+    duration 0
+    start 2020-10-29 05
+    
+    res Cleaner
+    res Fermentor 15G G10 2
+    dep 1
+
+[243] Secondary Fermentation Process (Fermentor 15G G10 3)
+    duration 888
+    start 2020-10-29 05
+    
+    res Fermentor 15G G10 3
+    dep 2
+
+[244] Secondary Fermentation Clean (Fermentor 15G G10 3)
+    duration 0
+    start 2020-12-05 05
+    
+    res Cleaner
+    res Fermentor 15G G10 3
+    dep 243
+
+[14] Aging Process (Keg 5G 4)
+    duration 888
+    start 2020-12-05 05
+    
+    res Keg 5G 4
+    dep 244
+
+[15] Aging Transfer (from Keg 5G 4 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-11 05
+    
+    res Pumper
+    res Keg 5G 4
+    res Mash Tun 15G G10
+    dep 14
+
+[16] Aging Clean (Keg 5G 4)
+    duration 0
+    start 2021-01-11 05
+    
+    res Cleaner
+    res Keg 5G 4
+    dep 15
+
+[176] Carbonation Process (CO2 Tank 5Lb G10 2)
+    duration 56
+    start 2021-01-11 05
+    
+    res CO2 Tank 5Lb G10 2
+    dep 16
+
+[177] Carbonation Clean (CO2 Tank 5Lb G10 2)
+    duration 0
+    start 2021-01-13 14
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 2
+    dep 176
+
+[170000] Bier (Batch: 170000)
+    
+    child 130
+    child 131
+    child 132
+    child 83
+    child 84
+    child 85
+    child 159
+    child 160
+    child 161
+    child 86
+    child 87
+    child 88
+    child 111
+    child 112
+    child 113
+    child 3
+    child 4
+    child 5
+
+[130] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-12 19
+    
+    res Mash Tun 15G G10
+    
+
+[131] Brewing Transfer (from Mash Tun 15G G10 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-13 01
+    
+    res Pumper
+    res Mash Tun 15G G10
+    res Mash Tun 15G G10
+    dep 130
+
+[132] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-13 02
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 131
+
+[83] Primary Fermentation Process (Fermentor 15G G10 7)
+    duration 176
+    start 2020-10-13 02
+    
+    res Fermentor 15G G10 7
+    dep 132
+
+[84] Primary Fermentation Transfer (from Fermentor 15G G10 7 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-20 10
+    
+    res Pumper
+    res Fermentor 15G G10 7
+    res Mash Tun 15G G10
+    dep 83
+
+[85] Primary Fermentation Clean (Fermentor 15G G10 7)
+    duration 0
+    start 2020-10-20 10
+    
+    res Cleaner
+    res Fermentor 15G G10 7
+    dep 84
+
+[159] Diactyl Rest Process (Fermentor 15G G10 2)
+    duration 80
+    start 2020-10-20 10
+    
+    res Fermentor 15G G10 2
+    dep 85
+
+[160] Diactyl Rest Transfer (from Fermentor 15G G10 2 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-23 18
+    
+    res Pumper
+    res Fermentor 15G G10 2
+    res Mash Tun 15G G10
+    dep 159
+
+[161] Diactyl Rest Clean (Fermentor 15G G10 2)
+    duration 0
+    start 2020-10-23 18
+    
+    res Cleaner
+    res Fermentor 15G G10 2
+    dep 160
+
+[86] Secondary Fermentation Process (Fermentor 15G G10 5)
+    duration 432
+    start 2020-10-23 18
+    
+    res Fermentor 15G G10 5
+    dep 161
+
+[87] Secondary Fermentation Transfer (from Fermentor 15G G10 5 to Mash Tun 15G G10)
+    duration 0
+    start 2020-11-10 18
+    
+    res Pumper
+    res Fermentor 15G G10 5
+    res Mash Tun 15G G10
+    dep 86
+
+[88] Secondary Fermentation Clean (Fermentor 15G G10 5)
+    duration 0
+    start 2020-11-10 18
+    
+    res Cleaner
+    res Fermentor 15G G10 5
+    dep 87
+
+[111] Aging Process (Keg 5G 4)
+    duration 888
+    start 2020-11-10 18
+    
+    res Keg 5G 4
+    dep 88
+
+[112] Aging Transfer (from Keg 5G 4 to Mash Tun 15G G10)
+    duration 0
+    start 2020-12-17 18
+    
+    res Pumper
+    res Keg 5G 4
+    res Mash Tun 15G G10
+    dep 111
+
+[113] Aging Clean (Keg 5G 4)
+    duration 0
+    start 2020-12-17 18
+    
+    res Cleaner
+    res Keg 5G 4
+    dep 112
+
+[3] Carbonation Process (CO2 Tank 5Lb G10 2)
+    duration 56
+    start 2020-12-17 18
+    
+    res CO2 Tank 5Lb G10 2
+    dep 113
+
+[4] Carbonation Transfer (from CO2 Tank 5Lb G10 2 to Mash Tun 15G G10)
+    duration 0
+    start 2020-12-20 02
+    
+    res Pumper
+    res CO2 Tank 5Lb G10 2
+    res Mash Tun 15G G10
+    dep 3
+
+[5] Carbonation Clean (CO2 Tank 5Lb G10 2)
+    duration 0
+    start 2020-12-20 02
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 2
+    dep 4
+
+[150000] Anti-Scurvy Elixir (Batch: 150000)
+    
+    child 195
+    child 196
+    child 156
+    child 157
+    child 158
+    child 254
+    child 255
+    child 256
+    child 11
+    child 12
+    child 13
+    child 268
+    child 269
+    child 270
+
+[195] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-12 06
+    
+    res Mash Tun 15G G10
+    
+
+[196] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-12 13
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 195
+
+[156] Primary Fermentation Process (Fermentor 15G G10 2)
+    duration 176
+    start 2020-10-12 13
+    
+    res Fermentor 15G G10 2
+    dep 196
+
+[157] Primary Fermentation Transfer (from Fermentor 15G G10 2 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-19 21
+    
+    res Pumper
+    res Fermentor 15G G10 2
+    res Mash Tun 15G G10
+    dep 156
+
+[158] Primary Fermentation Clean (Fermentor 15G G10 2)
+    duration 0
+    start 2020-10-19 21
+    
+    res Cleaner
+    res Fermentor 15G G10 2
+    dep 157
+
+[254] Secondary Fermentation Process (Fermentor 15G G10 4)
+    duration 936
+    start 2020-10-19 21
+    
+    res Fermentor 15G G10 4
+    dep 158
+
+[255] Secondary Fermentation Transfer (from Fermentor 15G G10 4 to Mash Tun 15G G10)
+    duration 0
+    start 2020-11-27 21
+    
+    res Pumper
+    res Fermentor 15G G10 4
+    res Mash Tun 15G G10
+    dep 254
+
+[256] Secondary Fermentation Clean (Fermentor 15G G10 4)
+    duration 0
+    start 2020-11-27 21
+    
+    res Cleaner
+    res Fermentor 15G G10 4
+    dep 255
+
+[11] Aging Process (Keg 5G 7)
+    duration 888
+    start 2020-11-27 21
+    
+    res Keg 5G 7
+    dep 256
+
+[12] Aging Transfer (from Keg 5G 7 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-03 21
+    
+    res Pumper
+    res Keg 5G 7
+    res Mash Tun 15G G10
+    dep 11
+
+[13] Aging Clean (Keg 5G 7)
+    duration 0
+    start 2021-01-03 21
+    
+    res Cleaner
+    res Keg 5G 7
+    dep 12
+
+[268] Carbonation Process (CO2 Tank 5Lb G10 1)
+    duration 56
+    start 2021-01-03 21
+    
+    res CO2 Tank 5Lb G10 1
+    dep 13
+
+[269] Carbonation Transfer (from CO2 Tank 5Lb G10 1 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-06 05
+    
+    res Pumper
+    res CO2 Tank 5Lb G10 1
+    res Mash Tun 15G G10
+    dep 268
+
+[270] Carbonation Clean (CO2 Tank 5Lb G10 1)
+    duration 0
+    start 2021-01-06 05
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 1
+    dep 269
+
+[160000] Anti-Scurvy Elixir (Batch: 160000)
+    
+    child 52
+    child 53
+    child 108
+    child 109
+    child 110
+    child 28
+    child 29
+    child 138
+    child 139
+    child 140
+    child 153
+    child 154
+    child 155
+
+[52] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-19 02
+    
+    res Mash Tun 15G G10
+    
+
+[53] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-19 09
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 52
+
+[108] Primary Fermentation Process (Fermentor 15G G10 7)
+    duration 176
+    start 2020-10-19 09
+    
+    res Fermentor 15G G10 7
+    dep 53
+
+[109] Primary Fermentation Transfer (from Fermentor 15G G10 7 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-26 17
+    
+    res Pumper
+    res Fermentor 15G G10 7
+    res Mash Tun 15G G10
+    dep 108
+
+[110] Primary Fermentation Clean (Fermentor 15G G10 7)
+    duration 0
+    start 2020-10-26 17
+    
+    res Cleaner
+    res Fermentor 15G G10 7
+    dep 109
+
+[28] Secondary Fermentation Process (Fermentor 15G G10 3)
+    duration 936
+    start 2020-10-26 17
+    
+    res Fermentor 15G G10 3
+    dep 110
+
+[29] Secondary Fermentation Clean (Fermentor 15G G10 3)
+    duration 0
+    start 2020-12-04 17
+    
+    res Cleaner
+    res Fermentor 15G G10 3
+    dep 28
+
+[138] Aging Process (Keg 5G 11)
+    duration 888
+    start 2020-12-04 17
+    
+    res Keg 5G 11
+    dep 29
+
+[139] Aging Transfer (from Keg 5G 11 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-10 17
+    
+    res Pumper
+    res Keg 5G 11
+    res Mash Tun 15G G10
+    dep 138
+
+[140] Aging Clean (Keg 5G 11)
+    duration 0
+    start 2021-01-10 17
+    
+    res Cleaner
+    res Keg 5G 11
+    dep 139
+
+[153] Carbonation Process (CO2 Tank 5Lb G10 2)
+    duration 56
+    start 2021-01-10 17
+    
+    res CO2 Tank 5Lb G10 2
+    dep 140
+
+[154] Carbonation Transfer (from CO2 Tank 5Lb G10 2 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-13 01
+    
+    res Pumper
+    res CO2 Tank 5Lb G10 2
+    res Mash Tun 15G G10
+    dep 153
+
+[155] Carbonation Clean (CO2 Tank 5Lb G10 2)
+    duration 0
+    start 2021-01-13 01
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 2
+    dep 154
+
+[120000] Anti-Scurvy Elixir (Batch: 120000)
+    
+    child 76
+    child 77
+    child 17
+    child 18
+    child 45
+    child 46
+    child 220
+    child 221
+    child 114
+    child 115
+    child 116
+
+[76] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-18 13
+    
+    res Mash Tun 15G G10
+    
+
+[77] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-18 20
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 76
+
+[17] Primary Fermentation Process (Fermentor 15G G10 3)
+    duration 176
+    start 2020-10-18 20
+    
+    res Fermentor 15G G10 3
+    dep 77
+
+[18] Primary Fermentation Clean (Fermentor 15G G10 3)
+    duration 0
+    start 2020-10-26 04
+    
+    res Cleaner
+    res Fermentor 15G G10 3
+    dep 17
+
+[45] Secondary Fermentation Process (Fermentor 15G G10 7)
+    duration 936
+    start 2020-10-26 04
+    
+    res Fermentor 15G G10 7
+    dep 18
+
+[46] Secondary Fermentation Clean (Fermentor 15G G10 7)
+    duration 0
+    start 2020-12-04 04
+    
+    res Cleaner
+    res Fermentor 15G G10 7
+    dep 45
+
+[220] Aging Process (Keg 5G 11)
+    duration 888
+    start 2020-12-04 04
+    
+    res Keg 5G 11
+    dep 46
+
+[221] Aging Clean (Keg 5G 11)
+    duration 0
+    start 2021-01-10 04
+    
+    res Cleaner
+    res Keg 5G 11
+    dep 220
+
+[114] Carbonation Process (CO2 Tank 5Lb G10 1)
+    duration 56
+    start 2021-01-10 04
+    
+    res CO2 Tank 5Lb G10 1
+    dep 221
+
+[115] Carbonation Transfer (from CO2 Tank 5Lb G10 1 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-12 12
+    
+    res Pumper
+    res CO2 Tank 5Lb G10 1
+    res Mash Tun 15G G10
+    dep 114
+
+[116] Carbonation Clean (CO2 Tank 5Lb G10 1)
+    duration 0
+    start 2021-01-12 12
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 1
+    dep 115
+
+[100000] Anti-Scurvy Elixir (Batch: 100000)
+    
+    child 66
+    child 67
+    child 36
+    child 37
+    child 38
+    child 245
+    child 246
+    child 247
+    child 186
+    child 187
+    child 188
+    child 33
+    child 34
+    child 35
+
+[66] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-13 08
+    
+    res Mash Tun 15G G10
+    
+
+[67] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-13 14
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 66
+
+[36] Primary Fermentation Process (Fermentor 15G G10 3)
+    duration 176
+    start 2020-10-13 14
+    
+    res Fermentor 15G G10 3
+    dep 67
+
+[37] Primary Fermentation Transfer (from Fermentor 15G G10 3 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-20 22
+    
+    res Pumper
+    res Fermentor 15G G10 3
+    res Mash Tun 15G G10
+    dep 36
+
+[38] Primary Fermentation Clean (Fermentor 15G G10 3)
+    duration 0
+    start 2020-10-20 22
+    
+    res Cleaner
+    res Fermentor 15G G10 3
+    dep 37
+
+[245] Secondary Fermentation Process (Fermentor 15G G10 6)
+    duration 936
+    start 2020-10-20 22
+    
+    res Fermentor 15G G10 6
+    dep 38
+
+[246] Secondary Fermentation Transfer (from Fermentor 15G G10 6 to Mash Tun 15G G10)
+    duration 0
+    start 2020-11-28 22
+    
+    res Pumper
+    res Fermentor 15G G10 6
+    res Mash Tun 15G G10
+    dep 245
+
+[247] Secondary Fermentation Clean (Fermentor 15G G10 6)
+    duration 0
+    start 2020-11-28 22
+    
+    res Cleaner
+    res Fermentor 15G G10 6
+    dep 246
+
+[186] Aging Process (Keg 5G 2)
+    duration 888
+    start 2020-11-28 22
+    
+    res Keg 5G 2
+    dep 247
+
+[187] Aging Transfer (from Keg 5G 2 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-04 22
+    
+    res Pumper
+    res Keg 5G 2
+    res Mash Tun 15G G10
+    dep 186
+
+[188] Aging Clean (Keg 5G 2)
+    duration 0
+    start 2021-01-04 22
+    
+    res Cleaner
+    res Keg 5G 2
+    dep 187
+
+[33] Carbonation Process (CO2 Tank 5Lb G10 1)
+    duration 56
+    start 2021-01-04 22
+    
+    res CO2 Tank 5Lb G10 1
+    dep 188
+
+[34] Carbonation Transfer (from CO2 Tank 5Lb G10 1 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-07 06
+    
+    res Pumper
+    res CO2 Tank 5Lb G10 1
+    res Mash Tun 15G G10
+    dep 33
+
+[35] Carbonation Clean (CO2 Tank 5Lb G10 1)
+    duration 0
+    start 2021-01-07 07
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 1
+    dep 34
+
+[70000] Autumn's Early Arrival Blonde (Batch: 70000)
+    
+    child 141
+    child 142
+    child 143
+    child 209
+    child 210
+    child 211
+    child 80
+    child 81
+    child 82
+    child 144
+    child 145
+    child 146
+    child 257
+    child 258
+    child 259
+
+[141] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-17 00
+    
+    res Mash Tun 15G G10
+    
+
+[142] Brewing Transfer (from Mash Tun 15G G10 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-17 06
+    
+    res Pumper
+    res Mash Tun 15G G10
+    res Mash Tun 15G G10
+    dep 141
+
+[143] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-17 06
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 142
+
+[209] Primary Fermentation Process (Fermentor 15G G10 2)
+    duration 224
+    start 2020-10-17 06
+    
+    res Fermentor 15G G10 2
+    dep 143
+
+[210] Primary Fermentation Transfer (from Fermentor 15G G10 2 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-26 14
+    
+    res Pumper
+    res Fermentor 15G G10 2
+    res Mash Tun 15G G10
+    dep 209
+
+[211] Primary Fermentation Clean (Fermentor 15G G10 2)
+    duration 0
+    start 2020-10-26 14
+    
+    res Cleaner
+    res Fermentor 15G G10 2
+    dep 210
+
+[80] Secondary Fermentation Process (Fermentor 15G G10 7)
+    duration 888
+    start 2020-10-26 14
+    
+    res Fermentor 15G G10 7
+    dep 211
+
+[81] Secondary Fermentation Transfer (from Fermentor 15G G10 7 to Mash Tun 15G G10)
+    duration 0
+    start 2020-12-02 14
+    
+    res Pumper
+    res Fermentor 15G G10 7
+    res Mash Tun 15G G10
+    dep 80
+
+[82] Secondary Fermentation Clean (Fermentor 15G G10 7)
+    duration 0
+    start 2020-12-02 15
+    
+    res Cleaner
+    res Fermentor 15G G10 7
+    dep 81
+
+[144] Aging Process (Keg 5G 4)
+    duration 888
+    start 2020-12-02 15
+    
+    res Keg 5G 4
+    dep 82
+
+[145] Aging Transfer (from Keg 5G 4 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-08 15
+    
+    res Pumper
+    res Keg 5G 4
+    res Mash Tun 15G G10
+    dep 144
+
+[146] Aging Clean (Keg 5G 4)
+    duration 0
+    start 2021-01-08 15
+    
+    res Cleaner
+    res Keg 5G 4
+    dep 145
+
+[257] Carbonation Process (CO2 Tank 5Lb G10 2)
+    duration 56
+    start 2021-01-08 15
+    
+    res CO2 Tank 5Lb G10 2
+    dep 146
+
+[258] Carbonation Transfer (from CO2 Tank 5Lb G10 2 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-10 23
+    
+    res Pumper
+    res CO2 Tank 5Lb G10 2
+    res Mash Tun 15G G10
+    dep 257
+
+[259] Carbonation Clean (CO2 Tank 5Lb G10 2)
+    duration 0
+    start 2021-01-10 23
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 2
+    dep 258
+
+[180000] Bier (Batch: 180000)
+    
+    child 189
+    child 190
+    child 191
+    child 212
+    child 213
+    child 263
+    child 264
+    child 234
+    child 235
+    child 236
+    child 25
+    child 26
+    child 27
+    child 100
+    child 101
+
+[189] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-14 21
+    
+    res Mash Tun 15G G10
+    
+
+[190] Brewing Transfer (from Mash Tun 15G G10 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-15 04
+    
+    res Pumper
+    res Mash Tun 15G G10
+    res Mash Tun 15G G10
+    dep 189
+
+[191] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-15 04
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 190
+
+[212] Primary Fermentation Process (Fermentor 15G G10 6)
+    duration 176
+    start 2020-10-15 04
+    
+    res Fermentor 15G G10 6
+    dep 191
+
+[213] Primary Fermentation Clean (Fermentor 15G G10 6)
+    duration 0
+    start 2020-10-22 12
+    
+    res Cleaner
+    res Fermentor 15G G10 6
+    dep 212
+
+[263] Diactyl Rest Process (Fermentor 15G G10 2)
+    duration 80
+    start 2020-10-22 12
+    
+    res Fermentor 15G G10 2
+    dep 213
+
+[264] Diactyl Rest Clean (Fermentor 15G G10 2)
+    duration 0
+    start 2020-10-25 20
+    
+    res Cleaner
+    res Fermentor 15G G10 2
+    dep 263
+
+[234] Secondary Fermentation Process (Fermentor 15G G10 4)
+    duration 432
+    start 2020-10-25 20
+    
+    res Fermentor 15G G10 4
+    dep 264
+
+[235] Secondary Fermentation Transfer (from Fermentor 15G G10 4 to Mash Tun 15G G10)
+    duration 0
+    start 2020-11-12 20
+    
+    res Pumper
+    res Fermentor 15G G10 4
+    res Mash Tun 15G G10
+    dep 234
+
+[236] Secondary Fermentation Clean (Fermentor 15G G10 4)
+    duration 0
+    start 2020-11-12 20
+    
+    res Cleaner
+    res Fermentor 15G G10 4
+    dep 235
+
+[25] Aging Process (Keg 5G 4)
+    duration 888
+    start 2020-11-12 20
+    
+    res Keg 5G 4
+    dep 236
+
+[26] Aging Transfer (from Keg 5G 4 to Mash Tun 15G G10)
+    duration 0
+    start 2020-12-19 20
+    
+    res Pumper
+    res Keg 5G 4
+    res Mash Tun 15G G10
+    dep 25
+
+[27] Aging Clean (Keg 5G 4)
+    duration 0
+    start 2020-12-19 20
+    
+    res Cleaner
+    res Keg 5G 4
+    dep 26
+
+[100] Carbonation Process (CO2 Tank 5Lb G10 2)
+    duration 56
+    start 2020-12-19 20
+    
+    res CO2 Tank 5Lb G10 2
+    dep 27
+
+[101] Carbonation Clean (CO2 Tank 5Lb G10 2)
+    duration 0
+    start 2020-12-22 04
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 2
+    dep 100
+
+[40000] Autumn's Early Arrival Blonde (Batch: 40000)
+    
+    child 171
+    child 172
+    child 237
+    child 238
+    child 239
+    child 123
+    child 124
+    child 150
+    child 151
+    child 152
+    child 225
+    child 226
+    child 227
+
+[171] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-16 11
+    
+    res Mash Tun 15G G10
+    
+
+[172] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-16 18
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 171
+
+[237] Primary Fermentation Process (Fermentor 15G G10 3)
+    duration 224
+    start 2020-10-16 18
+    
+    res Fermentor 15G G10 3
+    dep 172
+
+[238] Primary Fermentation Transfer (from Fermentor 15G G10 3 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-26 02
+    
+    res Pumper
+    res Fermentor 15G G10 3
+    res Mash Tun 15G G10
+    dep 237
+
+[239] Primary Fermentation Clean (Fermentor 15G G10 3)
+    duration 0
+    start 2020-10-26 02
+    
+    res Cleaner
+    res Fermentor 15G G10 3
+    dep 238
+
+[123] Secondary Fermentation Process (Fermentor 15G G10 4)
+    duration 888
+    start 2020-10-26 02
+    
+    res Fermentor 15G G10 4
+    dep 239
+
+[124] Secondary Fermentation Clean (Fermentor 15G G10 4)
+    duration 0
+    start 2020-12-02 02
+    
+    res Cleaner
+    res Fermentor 15G G10 4
+    dep 123
+
+[150] Aging Process (Keg 5G 4)
+    duration 888
+    start 2020-12-02 02
+    
+    res Keg 5G 4
+    dep 124
+
+[151] Aging Transfer (from Keg 5G 4 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-08 02
+    
+    res Pumper
+    res Keg 5G 4
+    res Mash Tun 15G G10
+    dep 150
+
+[152] Aging Clean (Keg 5G 4)
+    duration 0
+    start 2021-01-08 02
+    
+    res Cleaner
+    res Keg 5G 4
+    dep 151
+
+[225] Carbonation Process (CO2 Tank 5Lb G10 1)
+    duration 56
+    start 2021-01-08 02
+    
+    res CO2 Tank 5Lb G10 1
+    dep 152
+
+[226] Carbonation Transfer (from CO2 Tank 5Lb G10 1 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-10 10
+    
+    res Pumper
+    res CO2 Tank 5Lb G10 1
+    res Mash Tun 15G G10
+    dep 225
+
+[227] Carbonation Clean (CO2 Tank 5Lb G10 1)
+    duration 0
+    start 2021-01-10 10
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 1
+    dep 226
+
+[130000] Anti-Scurvy Elixir (Batch: 130000)
+    
+    child 30
+    child 31
+    child 32
+    child 60
+    child 61
+    child 62
+    child 63
+    child 64
+    child 65
+    child 217
+    child 218
+    child 219
+    child 147
+    child 148
+    child 149
+
+[30] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-15 22
+    
+    res Mash Tun 15G G10
+    
+
+[31] Brewing Transfer (from Mash Tun 15G G10 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-16 05
+    
+    res Pumper
+    res Mash Tun 15G G10
+    res Mash Tun 15G G10
+    dep 30
+
+[32] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-16 05
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 31
+
+[60] Primary Fermentation Process (Fermentor 15G G10 3)
+    duration 176
+    start 2020-10-16 05
+    
+    res Fermentor 15G G10 3
+    dep 32
+
+[61] Primary Fermentation Transfer (from Fermentor 15G G10 3 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-23 13
+    
+    res Pumper
+    res Fermentor 15G G10 3
+    res Mash Tun 15G G10
+    dep 60
+
+[62] Primary Fermentation Clean (Fermentor 15G G10 3)
+    duration 0
+    start 2020-10-23 13
+    
+    res Cleaner
+    res Fermentor 15G G10 3
+    dep 61
+
+[63] Secondary Fermentation Process (Fermentor 15G G10 7)
+    duration 936
+    start 2020-10-23 13
+    
+    res Fermentor 15G G10 7
+    dep 62
+
+[64] Secondary Fermentation Transfer (from Fermentor 15G G10 7 to Mash Tun 15G G10)
+    duration 0
+    start 2020-12-01 13
+    
+    res Pumper
+    res Fermentor 15G G10 7
+    res Mash Tun 15G G10
+    dep 63
+
+[65] Secondary Fermentation Clean (Fermentor 15G G10 7)
+    duration 0
+    start 2020-12-01 13
+    
+    res Cleaner
+    res Fermentor 15G G10 7
+    dep 64
+
+[217] Aging Process (Keg 5G 4)
+    duration 888
+    start 2020-12-01 13
+    
+    res Keg 5G 4
+    dep 65
+
+[218] Aging Transfer (from Keg 5G 4 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-07 13
+    
+    res Pumper
+    res Keg 5G 4
+    res Mash Tun 15G G10
+    dep 217
+
+[219] Aging Clean (Keg 5G 4)
+    duration 0
+    start 2021-01-07 13
+    
+    res Cleaner
+    res Keg 5G 4
+    dep 218
+
+[147] Carbonation Process (CO2 Tank 5Lb G10 2)
+    duration 56
+    start 2021-01-07 13
+    
+    res CO2 Tank 5Lb G10 2
+    dep 219
+
+[148] Carbonation Transfer (from CO2 Tank 5Lb G10 2 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-09 21
+    
+    res Pumper
+    res CO2 Tank 5Lb G10 2
+    res Mash Tun 15G G10
+    dep 147
+
+[149] Carbonation Clean (CO2 Tank 5Lb G10 2)
+    duration 0
+    start 2021-01-09 21
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 2
+    dep 148
+
+[110000] Anti-Scurvy Elixir (Batch: 110000)
+    
+    child 105
+    child 106
+    child 107
+    child 173
+    child 174
+    child 175
+    child 94
+    child 95
+    child 96
+    child 248
+    child 249
+    child 250
+    child 197
+    child 198
+    child 199
+
+[105] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-15 10
+    
+    res Mash Tun 15G G10
+    
+
+[106] Brewing Transfer (from Mash Tun 15G G10 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-15 16
+    
+    res Pumper
+    res Mash Tun 15G G10
+    res Mash Tun 15G G10
+    dep 105
+
+[107] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-15 16
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 106
+
+[173] Primary Fermentation Process (Fermentor 15G G10 2)
+    duration 176
+    start 2020-10-15 16
+    
+    res Fermentor 15G G10 2
+    dep 107
+
+[174] Primary Fermentation Transfer (from Fermentor 15G G10 2 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-23 00
+    
+    res Pumper
+    res Fermentor 15G G10 2
+    res Mash Tun 15G G10
+    dep 173
+
+[175] Primary Fermentation Clean (Fermentor 15G G10 2)
+    duration 0
+    start 2020-10-23 01
+    
+    res Cleaner
+    res Fermentor 15G G10 2
+    dep 174
+
+[94] Secondary Fermentation Process (Fermentor 15G G10 7)
+    duration 936
+    start 2020-10-23 01
+    
+    res Fermentor 15G G10 7
+    dep 175
+
+[95] Secondary Fermentation Transfer (from Fermentor 15G G10 7 to Mash Tun 15G G10)
+    duration 0
+    start 2020-12-01 01
+    
+    res Pumper
+    res Fermentor 15G G10 7
+    res Mash Tun 15G G10
+    dep 94
+
+[96] Secondary Fermentation Clean (Fermentor 15G G10 7)
+    duration 0
+    start 2020-12-01 01
+    
+    res Cleaner
+    res Fermentor 15G G10 7
+    dep 95
+
+[248] Aging Process (Keg 5G 7)
+    duration 888
+    start 2020-12-01 01
+    
+    res Keg 5G 7
+    dep 96
+
+[249] Aging Transfer (from Keg 5G 7 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-07 01
+    
+    res Pumper
+    res Keg 5G 7
+    res Mash Tun 15G G10
+    dep 248
+
+[250] Aging Clean (Keg 5G 7)
+    duration 0
+    start 2021-01-07 01
+    
+    res Cleaner
+    res Keg 5G 7
+    dep 249
+
+[197] Carbonation Process (CO2 Tank 5Lb G10 1)
+    duration 56
+    start 2021-01-07 01
+    
+    res CO2 Tank 5Lb G10 1
+    dep 250
+
+[198] Carbonation Transfer (from CO2 Tank 5Lb G10 1 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-09 09
+    
+    res Pumper
+    res CO2 Tank 5Lb G10 1
+    res Mash Tun 15G G10
+    dep 197
+
+[199] Carbonation Clean (CO2 Tank 5Lb G10 1)
+    duration 0
+    start 2021-01-09 09
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 1
+    dep 198
+
+[190000] Bier (Batch: 190000)
+    
+    child 136
+    child 137
+    child 117
+    child 118
+    child 119
+    child 260
+    child 261
+    child 262
+    child 178
+    child 179
+    child 39
+    child 40
+    child 41
+    child 49
+    child 50
+    child 51
+
+[136] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-21 17
+    
+    res Mash Tun 15G G10
+    
+
+[137] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-21 23
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 136
+
+[117] Primary Fermentation Process (Fermentor 15G G10 1)
+    duration 176
+    start 2020-10-21 23
+    
+    res Fermentor 15G G10 1
+    dep 137
+
+[118] Primary Fermentation Transfer (from Fermentor 15G G10 1 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-29 07
+    
+    res Pumper
+    res Fermentor 15G G10 1
+    res Mash Tun 15G G10
+    dep 117
+
+[119] Primary Fermentation Clean (Fermentor 15G G10 1)
+    duration 0
+    start 2020-10-29 08
+    
+    res Cleaner
+    res Fermentor 15G G10 1
+    dep 118
+
+[260] Diactyl Rest Process (Fermentor 15G G10 4)
+    duration 80
+    start 2020-10-29 08
+    
+    res Fermentor 15G G10 4
+    dep 119
+
+[261] Diactyl Rest Transfer (from Fermentor 15G G10 4 to Mash Tun 15G G10)
+    duration 0
+    start 2020-11-01 16
+    
+    res Pumper
+    res Fermentor 15G G10 4
+    res Mash Tun 15G G10
+    dep 260
+
+[262] Diactyl Rest Clean (Fermentor 15G G10 4)
+    duration 0
+    start 2020-11-01 16
+    
+    res Cleaner
+    res Fermentor 15G G10 4
+    dep 261
+
+[178] Secondary Fermentation Process (Fermentor 15G G10 7)
+    duration 432
+    start 2020-11-01 16
+    
+    res Fermentor 15G G10 7
+    dep 262
+
+[179] Secondary Fermentation Clean (Fermentor 15G G10 7)
+    duration 0
+    start 2020-11-19 16
+    
+    res Cleaner
+    res Fermentor 15G G10 7
+    dep 178
+
+[39] Aging Process (Keg 5G 6)
+    duration 888
+    start 2020-11-19 16
+    
+    res Keg 5G 6
+    dep 179
+
+[40] Aging Transfer (from Keg 5G 6 to Mash Tun 15G G10)
+    duration 0
+    start 2020-12-26 16
+    
+    res Pumper
+    res Keg 5G 6
+    res Mash Tun 15G G10
+    dep 39
+
+[41] Aging Clean (Keg 5G 6)
+    duration 0
+    start 2020-12-26 16
+    
+    res Cleaner
+    res Keg 5G 6
+    dep 40
+
+[49] Carbonation Process (CO2 Tank 5Lb G10 1)
+    duration 56
+    start 2020-12-26 16
+    
+    res CO2 Tank 5Lb G10 1
+    dep 41
+
+[50] Carbonation Transfer (from CO2 Tank 5Lb G10 1 to Mash Tun 15G G10)
+    duration 0
+    start 2020-12-29 00
+    
+    res Pumper
+    res CO2 Tank 5Lb G10 1
+    res Mash Tun 15G G10
+    dep 49
+
+[51] Carbonation Clean (CO2 Tank 5Lb G10 1)
+    duration 0
+    start 2020-12-29 00
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 1
+    dep 50
+
+[90000] Autumn's Early Arrival Blonde (Batch: 90000)
+    
+    child 133
+    child 134
+    child 135
+    child 97
+    child 98
+    child 99
+    child 57
+    child 58
+    child 59
+    child 165
+    child 166
+    child 167
+    child 265
+    child 266
+    child 267
+
+[133] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-20 03
+    
+    res Mash Tun 15G G10
+    
+
+[134] Brewing Transfer (from Mash Tun 15G G10 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-20 10
+    
+    res Pumper
+    res Mash Tun 15G G10
+    res Mash Tun 15G G10
+    dep 133
+
+[135] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-20 10
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 134
+
+[97] Primary Fermentation Process (Fermentor 15G G10 7)
+    duration 224
+    start 2020-10-20 10
+    
+    res Fermentor 15G G10 7
+    dep 135
+
+[98] Primary Fermentation Transfer (from Fermentor 15G G10 7 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-29 18
+    
+    res Pumper
+    res Fermentor 15G G10 7
+    res Mash Tun 15G G10
+    dep 97
+
+[99] Primary Fermentation Clean (Fermentor 15G G10 7)
+    duration 0
+    start 2020-10-29 18
+    
+    res Cleaner
+    res Fermentor 15G G10 7
+    dep 98
+
+[57] Secondary Fermentation Process (Fermentor 15G G10 3)
+    duration 888
+    start 2020-10-29 18
+    
+    res Fermentor 15G G10 3
+    dep 99
+
+[58] Secondary Fermentation Transfer (from Fermentor 15G G10 3 to Mash Tun 15G G10)
+    duration 0
+    start 2020-12-05 18
+    
+    res Pumper
+    res Fermentor 15G G10 3
+    res Mash Tun 15G G10
+    dep 57
+
+[59] Secondary Fermentation Clean (Fermentor 15G G10 3)
+    duration 0
+    start 2020-12-05 18
+    
+    res Cleaner
+    res Fermentor 15G G10 3
+    dep 58
+
+[165] Aging Process (Keg 5G 4)
+    duration 888
+    start 2020-12-05 18
+    
+    res Keg 5G 4
+    dep 59
+
+[166] Aging Transfer (from Keg 5G 4 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-11 18
+    
+    res Pumper
+    res Keg 5G 4
+    res Mash Tun 15G G10
+    dep 165
+
+[167] Aging Clean (Keg 5G 4)
+    duration 0
+    start 2021-01-11 18
+    
+    res Cleaner
+    res Keg 5G 4
+    dep 166
+
+[265] Carbonation Process (CO2 Tank 5Lb G10 1)
+    duration 56
+    start 2021-01-11 18
+    
+    res CO2 Tank 5Lb G10 1
+    dep 167
+
+[266] Carbonation Transfer (from CO2 Tank 5Lb G10 1 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-14 02
+    
+    res Pumper
+    res CO2 Tank 5Lb G10 1
+    res Mash Tun 15G G10
+    dep 265
+
+[267] Carbonation Clean (CO2 Tank 5Lb G10 1)
+    duration 0
+    start 2021-01-14 02
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 1
+    dep 266
+
+[60000] Autumn's Early Arrival Blonde (Batch: 60000)
+    
+    child 102
+    child 103
+    child 104
+    child 206
+    child 207
+    child 208
+    child 228
+    child 229
+    child 230
+    child 78
+    child 79
+    child 214
+    child 215
+    child 216
+
+[102] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-18 01
+    
+    res Mash Tun 15G G10
+    
+
+[103] Brewing Transfer (from Mash Tun 15G G10 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-18 07
+    
+    res Pumper
+    res Mash Tun 15G G10
+    res Mash Tun 15G G10
+    dep 102
+
+[104] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-18 07
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 103
+
+[206] Primary Fermentation Process (Fermentor 15G G10 7)
+    duration 224
+    start 2020-10-18 07
+    
+    res Fermentor 15G G10 7
+    dep 104
+
+[207] Primary Fermentation Transfer (from Fermentor 15G G10 7 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-27 15
+    
+    res Pumper
+    res Fermentor 15G G10 7
+    res Mash Tun 15G G10
+    dep 206
+
+[208] Primary Fermentation Clean (Fermentor 15G G10 7)
+    duration 0
+    start 2020-10-27 16
+    
+    res Cleaner
+    res Fermentor 15G G10 7
+    dep 207
+
+[228] Secondary Fermentation Process (Fermentor 15G G10 7)
+    duration 888
+    start 2020-10-27 16
+    
+    res Fermentor 15G G10 7
+    dep 208
+
+[229] Secondary Fermentation Transfer (from Fermentor 15G G10 7 to Mash Tun 15G G10)
+    duration 0
+    start 2020-12-03 16
+    
+    res Pumper
+    res Fermentor 15G G10 7
+    res Mash Tun 15G G10
+    dep 228
+
+[230] Secondary Fermentation Clean (Fermentor 15G G10 7)
+    duration 0
+    start 2020-12-03 16
+    
+    res Cleaner
+    res Fermentor 15G G10 7
+    dep 229
+
+[78] Aging Process (Keg 5G 4)
+    duration 888
+    start 2020-12-03 16
+    
+    res Keg 5G 4
+    dep 230
+
+[79] Aging Clean (Keg 5G 4)
+    duration 0
+    start 2021-01-09 16
+    
+    res Cleaner
+    res Keg 5G 4
+    dep 78
+
+[214] Carbonation Process (CO2 Tank 5Lb G10 1)
+    duration 56
+    start 2021-01-09 16
+    
+    res CO2 Tank 5Lb G10 1
+    dep 79
+
+[215] Carbonation Transfer (from CO2 Tank 5Lb G10 1 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-12 00
+    
+    res Pumper
+    res CO2 Tank 5Lb G10 1
+    res Mash Tun 15G G10
+    dep 214
+
+[216] Carbonation Clean (CO2 Tank 5Lb G10 1)
+    duration 0
+    start 2021-01-12 00
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 1
+    dep 215
+
+[20000] Autumn's Early Arrival Blonde (Batch: 20000)
+    
+    child 183
+    child 184
+    child 185
+    child 71
+    child 72
+    child 73
+    child 74
+    child 75
+    child 200
+    child 201
+    child 202
+    child 180
+    child 181
+    child 182
+
+[183] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-21 04
+    
+    res Mash Tun 15G G10
+    
+
+[184] Brewing Transfer (from Mash Tun 15G G10 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-21 11
+    
+    res Pumper
+    res Mash Tun 15G G10
+    res Mash Tun 15G G10
+    dep 183
+
+[185] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-21 11
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 184
+
+[71] Primary Fermentation Process (Fermentor 15G G10 4)
+    duration 224
+    start 2020-10-21 11
+    
+    res Fermentor 15G G10 4
+    dep 185
+
+[72] Primary Fermentation Transfer (from Fermentor 15G G10 4 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-30 19
+    
+    res Pumper
+    res Fermentor 15G G10 4
+    res Mash Tun 15G G10
+    dep 71
+
+[73] Primary Fermentation Clean (Fermentor 15G G10 4)
+    duration 0
+    start 2020-10-30 19
+    
+    res Cleaner
+    res Fermentor 15G G10 4
+    dep 72
+
+[74] Secondary Fermentation Process (Fermentor 15G G10 3)
+    duration 888
+    start 2020-10-30 19
+    
+    res Fermentor 15G G10 3
+    dep 73
+
+[75] Secondary Fermentation Clean (Fermentor 15G G10 3)
+    duration 0
+    start 2020-12-06 19
+    
+    res Cleaner
+    res Fermentor 15G G10 3
+    dep 74
+
+[200] Aging Process (Keg 5G 2)
+    duration 888
+    start 2020-12-06 19
+    
+    res Keg 5G 2
+    dep 75
+
+[201] Aging Transfer (from Keg 5G 2 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-12 19
+    
+    res Pumper
+    res Keg 5G 2
+    res Mash Tun 15G G10
+    dep 200
+
+[202] Aging Clean (Keg 5G 2)
+    duration 0
+    start 2021-01-12 19
+    
+    res Cleaner
+    res Keg 5G 2
+    dep 201
+
+[180] Carbonation Process (CO2 Tank 5Lb G10 2)
+    duration 56
+    start 2021-01-12 19
+    
+    res CO2 Tank 5Lb G10 2
+    dep 202
+
+[181] Carbonation Transfer (from CO2 Tank 5Lb G10 2 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-15 03
+    
+    res Pumper
+    res CO2 Tank 5Lb G10 2
+    res Mash Tun 15G G10
+    dep 180
+
+[182] Carbonation Clean (CO2 Tank 5Lb G10 2)
+    duration 0
+    start 2021-01-15 03
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 2
+    dep 181
+
+[140000] Anti-Scurvy Elixir (Batch: 140000)
+    
+    child 231
+    child 232
+    child 233
+    child 19
+    child 20
+    child 21
+    child 8
+    child 9
+    child 10
+    child 92
+    child 93
+    child 120
+    child 121
+    child 122
+
+[231] Brewing Process (Mash Tun 15G G10)
+    duration 6
+    start 2020-10-17 12
+    
+    res Mash Tun 15G G10
+    
+
+[232] Brewing Transfer (from Mash Tun 15G G10 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-17 19
+    
+    res Pumper
+    res Mash Tun 15G G10
+    res Mash Tun 15G G10
+    dep 231
+
+[233] Brewing Clean (Mash Tun 15G G10)
+    duration 0
+    start 2020-10-17 19
+    
+    res Cleaner
+    res Mash Tun 15G G10
+    dep 232
+
+[19] Primary Fermentation Process (Fermentor 15G G10 3)
+    duration 176
+    start 2020-10-17 19
+    
+    res Fermentor 15G G10 3
+    dep 233
+
+[20] Primary Fermentation Transfer (from Fermentor 15G G10 3 to Mash Tun 15G G10)
+    duration 0
+    start 2020-10-25 03
+    
+    res Pumper
+    res Fermentor 15G G10 3
+    res Mash Tun 15G G10
+    dep 19
+
+[21] Primary Fermentation Clean (Fermentor 15G G10 3)
+    duration 0
+    start 2020-10-25 03
+    
+    res Cleaner
+    res Fermentor 15G G10 3
+    dep 20
+
+[8] Secondary Fermentation Process (Fermentor 15G G10 6)
+    duration 936
+    start 2020-10-25 03
+    
+    res Fermentor 15G G10 6
+    dep 21
+
+[9] Secondary Fermentation Transfer (from Fermentor 15G G10 6 to Mash Tun 15G G10)
+    duration 0
+    start 2020-12-03 03
+    
+    res Pumper
+    res Fermentor 15G G10 6
+    res Mash Tun 15G G10
+    dep 8
+
+[10] Secondary Fermentation Clean (Fermentor 15G G10 6)
+    duration 0
+    start 2020-12-03 03
+    
+    res Cleaner
+    res Fermentor 15G G10 6
+    dep 9
+
+[92] Aging Process (Keg 5G 4)
+    duration 888
+    start 2020-12-03 03
+    
+    res Keg 5G 4
+    dep 10
+
+[93] Aging Clean (Keg 5G 4)
+    duration 0
+    start 2021-01-09 03
+    
+    res Cleaner
+    res Keg 5G 4
+    dep 92
+
+[120] Carbonation Process (CO2 Tank 5Lb G10 1)
+    duration 56
+    start 2021-01-09 03
+    
+    res CO2 Tank 5Lb G10 1
+    dep 93
+
+[121] Carbonation Transfer (from CO2 Tank 5Lb G10 1 to Mash Tun 15G G10)
+    duration 0
+    start 2021-01-11 11
+    
+    res Pumper
+    res CO2 Tank 5Lb G10 1
+    res Mash Tun 15G G10
+    dep 120
+
+[122] Carbonation Clean (CO2 Tank 5Lb G10 1)
+    duration 0
+    start 2021-01-11 11
+    
+    res Cleaner
+    res CO2 Tank 5Lb G10 1
+    dep 121
+
+        

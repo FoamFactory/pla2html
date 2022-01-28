@@ -3,8 +3,9 @@ use chrono::naive::NaiveDate;
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
-
 use clap::Parser;
+
+use pla2html::pla::PlaParser;
 
 #[macro_use]
 extern crate horrorshow;
@@ -14,6 +15,10 @@ use horrorshow::helper::doctype;
 #[derive(Parser, Debug)]
 #[clap(version, about, long_about = None)]
 struct Args {
+    /// Input file name. Should be in .pla format
+    #[clap(short)]
+    input_file:String,
+
     /// Output file name
     #[clap(short)]
     output_file: String,
@@ -21,6 +26,12 @@ struct Args {
 
 fn main() {
     let args = Args::parse();
+
+    // Parse the input pla file
+    let pla_parser = match PlaParser::new(Path::new(&args.input_file)) {
+        Ok(p) => p,
+        Err(why) => panic!("Unable to parse {} due to {}", args.input_file, why),
+    };
 
     // Create the main html page with the grid
     let start_date = NaiveDate::parse_from_str("2021-10-01", "%Y-%m-%d").unwrap();
@@ -124,6 +135,7 @@ fn main() {
           text-align: center;
         }
     "#;
+
     let num_months = months.len();
     let process_length = 22;
     let actual = format!("{}", html! {
@@ -178,41 +190,8 @@ fn main() {
                                 }
                             }
                         }
-
-                        // td(class="headerRow full", colspan="22") {
-                        //     div(class="full-bubble") {
-                        //         : "Autumn's Early Arrival Blonde Ale"
-                        //     }
-                        // }
-
                     }
                 }
-    //             // attributes
-    //             h1(id="heading") {
-    //                 // Insert escaped text
-    //                 : "Hello! This is <html />"
-    //             }
-    //             p {
-    //                 // Insert raw text (unescaped)
-    //                 : Raw("Let's <i>count</i> to 10!")
-    //             }
-    //             ol(id="count") {
-    //                 // You can embed for loops, while loops, and if statements.
-    //                 @ for i in 0..10 {
-    //                     li(first? = (i == 0)) {
-    //                         // Format some text.
-    //                         : format_args!("{}", i+1)
-    //                     }
-    //                 }
-    //             }
-    //             // You need semi-colons for tags without children.
-    //             br; br;
-    //             p {
-    //                 // You can also embed closures.
-    //                 |tmpl| {
-    //                     tmpl << "Easy!";
-    //                 }
-    //             }
             }
         }
     });
