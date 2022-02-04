@@ -5,11 +5,11 @@ use std::io::prelude::*;
 use std::path::Path;
 use clap::Parser;
 
-use pla2html::pla::PlaParser;
+use pla2html::pla::parser::PlaParser;
 
 #[macro_use]
 extern crate horrorshow;
-use horrorshow::prelude::*;
+// use horrorshow::prelude::*;
 use horrorshow::helper::doctype;
 
 #[derive(Parser, Debug)]
@@ -28,7 +28,7 @@ fn main() {
     let args = Args::parse();
 
     // Parse the input pla file
-    let pla_parser = match PlaParser::new(Path::new(&args.input_file)) {
+    let _pla_parser = match PlaParser::new(Path::new(&args.input_file)) {
         Ok(p) => p,
         Err(why) => panic!("Unable to parse {} due to {}", args.input_file, why),
     };

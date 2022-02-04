@@ -12,3 +12,5 @@ chrono = "0.4.19"
 clap = { version = "3.0", features = ["derive"] }
 horrorshow = "0.8.4"
 regex = "1"
+
+[dev-dependencies]
