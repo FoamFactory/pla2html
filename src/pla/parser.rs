@@ -6,11 +6,13 @@ use std::str::FromStr;
 use regex::Regex;
 use crate::pla::command::PlaCommand;
 use crate::pla::entry::PlaEntry;
-use crate::pla::sub_blocks::{PlaStartBlock, PlaSubBlock};
+use crate::pla::sub_blocks::{PlaChildBlock, PlaStartBlock, PlaSubBlock};
 
 pub struct PlaParser {
     pub entries: Vec<PlaEntry>,
-    id_map: Option<HashMap<u64, PlaEntry>>,
+
+    // mapping of ids to the index in the vector above
+    id_map: Option<HashMap<u32, usize>>,
 }
 
 impl PlaParser {
@@ -30,22 +32,19 @@ impl PlaParser {
             Err(e) => panic!("Unable to parse file from contents: {}", e.to_string()),
         };
 
-
         // Read the file into a vec, skipping blank lines
         let lines = contents.split("\n").map(|s| String::from(s)).filter(|l| !l.is_empty()).collect();
 
         PlaParser::parse(lines)
     }
 
-    pub fn get_entry_by_id(&self, id: u64) -> Option<PlaEntry> {
+    pub fn get_entry_by_id(&self, id: u32) -> Option<PlaEntry> {
         match &self.id_map {
             Some(x) => {
                 let borrowed_entry = x.get(&id);
                 let retval = match borrowed_entry {
-                    Some(be) => Some(PlaEntry {
-                        id: String::from(&be.id),
-                        description: String::from(&be.description)
-                    }),
+                    Some(be) => Some(self.entries[*be].clone()),
+
                     None => None,
                 };
 
@@ -105,53 +104,104 @@ impl PlaParser {
                 let entry = match line.command {
                     PlaCommand::ENTRY => {
                         let entry_regex = Regex::new(r"^\[(\d*)\](\s)*(.*)").unwrap();
+                        let id_capture = entry_regex.captures(&line.text).unwrap().get(1).map_or(String::from(""), |m| String::from(m.as_str()));
                         PlaEntry {
-                            id: entry_regex.captures(&line.text).unwrap().get(1).map_or(String::from(""), |m| String::from(m.as_str())),
-                            description: entry_regex.captures(&line.text).unwrap().get(3).map_or(String::from(""), |m| String::from(m.as_str()))
+                            id: id_capture.parse::<u32>().unwrap(),
+                            description: entry_regex.captures(&line.text).unwrap().get(3).map_or(String::from(""), |m| String::from(m.as_str())),
+                            children: None
                         }
                     },
                     _ => PlaEntry {
-                        id: String::from(""),
+                        id: 0,
                         description: String::from(""),
+                        children: None
                     }
                 };
                 entry
             }).collect();
 
-        let start_blocks: Vec<Box<dyn PlaSubBlock>> = heirarchy
+        let sub_blocks: Vec<Box<dyn PlaSubBlock>> = heirarchy
             .into_iter()
-            .filter(|hl| hl.command == PlaCommand::START)
+            .filter(|x| x.command == PlaCommand::START || x.command == PlaCommand::CHILD)
             .map(|hl| {
                 match hl.command {
+                    PlaCommand::START => Box::new(PlaStartBlock::try_from(&hl).unwrap()) as Box<dyn PlaSubBlock>,
+                    PlaCommand::CHILD => Box::new(PlaChildBlock::try_from(&hl).unwrap()) as Box<dyn PlaSubBlock>,
                     _ => Box::new(PlaStartBlock::try_from(&hl).unwrap()) as Box<dyn PlaSubBlock>,
                 }
             })
             .collect();
 
-        // println!("{:?}", start_blocks);
+        // Now, post-process all entries so that the appropriate children are included
+        let hierarchical_entries: Vec<PlaEntry> = entries
+            .into_iter()
+            .map(|e| {
+                let mut entry_sb: Vec<Box<dyn PlaSubBlock>> = vec![];
+                sub_blocks
+                    .iter()
+                    .filter(|sb| {
+                        sb.get_parent_id() == e.id
+                    })
+                    .filter(|sb| {
+                        sb.get_command() == PlaCommand::START
+                        || sb.get_command() == PlaCommand::CHILD
+                    })
+                    .for_each (|sb| {
+                        match sb.get_command() {
+                            PlaCommand::START => {
+                                let pla_start = PlaStartBlock::try_from(sb);
+                                if pla_start.is_err() {
+                                    panic!("Encountered an error while trying to create hierarchicial entries: {}", pla_start.err().unwrap());
+                                }
+                                entry_sb.push(Box::new(pla_start.unwrap()));
+                            },
+                            _ => {}
+                        }
 
-        let map = PlaParser::build_map(&entries);
+                    });
+                (e, entry_sb)
+            })
+            .map(|(e, mut entry_sb)| {
+                let sub_block_children: Vec<Box<dyn PlaSubBlock>> = entry_sb.drain(0..).collect();
+                let mut children_retval: Option<Vec<Box<dyn PlaSubBlock>>> = None;
+                if sub_block_children.len() > 0 {
+                    children_retval = Some(sub_block_children);
+                }
+                PlaEntry {
+                    description: String::from(&e.description),
+                    id: e.id,
+                    children: children_retval
+                }
+            })
+            .collect();
+        for next_hentry in &hierarchical_entries {
+            println!("Hierarchicial entry: {:?}", next_hentry);
+        }
+
+        let map = PlaParser::build_map(&hierarchical_entries);
         Ok(PlaParser {
-            entries,
+            entries: hierarchical_entries,
             id_map: Some(map),
         })
     }
 
-    fn build_map(entries: &Vec<PlaEntry>) -> HashMap<u64, PlaEntry> {
-        let mut map = HashMap::new();
-        let entries_with_id: Vec<PlaEntry> = entries.into_iter().filter(|e| !e.id.is_empty()).map(|e| PlaEntry {
-            id: e.id.clone(),
-            description: e.description.clone(),
-        }).collect();
+    fn build_map(entries: &Vec<PlaEntry>) -> HashMap<u32, usize> {
+        let mut map: HashMap<u32, usize> = HashMap::new();
+        let entries_with_id: Vec<PlaEntry> = entries
+            .into_iter()
+            // .filter(|e| !e.id.is_empty())
+            .map(|e| PlaEntry {
+                id: e.id.clone(),
+                description: e.description.clone(),
+                children: None
+            })
+            .collect();
 
-        for next_entry in entries_with_id {
-            let id = String::from(&next_entry.id);
-            let description = next_entry.description;
-            map.insert((&next_entry.id).parse::<u64>().unwrap_or(1), PlaEntry {
-                id,
-                description
-            });
+        for next_entry_idx in 0..entries_with_id.len() {
+            let next_entry = &entries_with_id[next_entry_idx];
+            map.insert(next_entry.id, next_entry_idx);
         }
+
         map
     }
 }
@@ -275,12 +325,32 @@ mod tests {
     }
 
     #[test]
+    fn it_should_parse_a_simple_pla_file() {
+        let dir = env!("CARGO_MANIFEST_DIR");
+        let mut path_buf: PathBuf = PathBuf::new();
+        path_buf.push(dir);
+        path_buf.push("contrib");
+        path_buf.push("pla_simple.pla");
+
+        let path: &Path = path_buf.as_path();
+        let pla_parser = match PlaParser::new(path) {
+            Ok(p) => p,
+            Err(why) => panic!("Unable to parse {} due to {}", path.to_str().unwrap_or(""), why),
+        };
+
+        println!("{:?}", pla_parser.get_entry_by_id(10000).unwrap());
+        println!("{:?}", pla_parser.get_entry_by_id(122).unwrap());
+        assert!(!pla_parser.get_entry_by_id(10000).unwrap().has_children());
+        assert!(pla_parser.get_entry_by_id(122).unwrap().has_children());
+    }
+
+    #[test]
     fn it_should_parse_a_complicated_pla_file() {
         let dir = env!("CARGO_MANIFEST_DIR");
         let mut path_buf: PathBuf = PathBuf::new();
         path_buf.push(dir);
         path_buf.push("contrib");
-        path_buf.push("pla.pla");
+        path_buf.push("pla_complicated.pla");
 
         let path: &Path = path_buf.as_path();
         let pla_parser = match PlaParser::new(path) {
@@ -289,9 +359,12 @@ mod tests {
         };
 
         assert_eq!(PlaEntry {
-            id: String::from("10000"),
+            id: 10000,
             description: String::from("Autumn's Early Arrival Blonde (Batch: 10000)"),
+            children: None
         }, pla_parser.get_entry_by_id(10000).unwrap());
+
+        println!("{:?}", pla_parser.get_entry_by_id(10000).unwrap());
 
         // We shouldn't be able to get a nonexistent id
         assert_eq!(None, pla_parser.get_entry_by_id(2018271));

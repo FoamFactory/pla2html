@@ -1,6 +1,7 @@
 use std::error::Error;
 use std::fmt;
 use std::fmt::{Display, Formatter};
+use crate::pla::command::PlaCommand;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PlaParseError {
@@ -10,6 +11,17 @@ pub struct PlaParseError {
 impl Display for PlaParseError {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         write!(f, "PlaParseError: {}", self.message)
+    }
+}
+
+#[derive(Clone, Debug, PartialEq)]
+pub struct PlaConversionError {
+    pub initial_type: PlaCommand
+}
+
+impl Display for PlaConversionError {
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+        write!(f, "Unable to convert from a PlaSubBlock to the requested concrete type: {:?}", self.initial_type)
     }
 }
 
