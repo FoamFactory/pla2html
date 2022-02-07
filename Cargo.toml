@@ -16,3 +16,4 @@ mopa = "0.2.2"
 dyn-clone = "1.0"
 
 [dev-dependencies]
+grcov = "0.8.6"

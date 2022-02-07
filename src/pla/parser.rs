@@ -6,7 +6,7 @@ use std::str::FromStr;
 use regex::Regex;
 use crate::pla::command::PlaCommand;
 use crate::pla::entry::PlaEntry;
-use crate::pla::sub_blocks::{PlaChildBlock, PlaStartBlock, PlaSubBlock};
+use crate::pla::sub_blocks::{PlaChildBlock, PlaDependencyBlock, PlaDurationBlock, PlaStartBlock, PlaSubBlock};
 
 pub struct PlaParser {
     pub entries: Vec<PlaEntry>,
@@ -122,12 +122,18 @@ impl PlaParser {
 
         let sub_blocks: Vec<Box<dyn PlaSubBlock>> = heirarchy
             .into_iter()
-            .filter(|x| x.command == PlaCommand::START || x.command == PlaCommand::CHILD)
+            .filter(|x|
+                x.command == PlaCommand::START
+                    || x.command == PlaCommand::CHILD
+                    || x.command == PlaCommand::DURATION
+                    || x.command == PlaCommand::DEPENDENCY)
             .map(|hl| {
                 match hl.command {
                     PlaCommand::START => Box::new(PlaStartBlock::try_from(&hl).unwrap()) as Box<dyn PlaSubBlock>,
                     PlaCommand::CHILD => Box::new(PlaChildBlock::try_from(&hl).unwrap()) as Box<dyn PlaSubBlock>,
-                    _ => Box::new(PlaStartBlock::try_from(&hl).unwrap()) as Box<dyn PlaSubBlock>,
+                    PlaCommand::DURATION => Box::new(PlaDurationBlock::try_from(&hl).unwrap()) as Box<dyn PlaSubBlock>,
+                    PlaCommand::DEPENDENCY => Box::new(PlaDependencyBlock::try_from(&hl).unwrap()) as Box<dyn PlaSubBlock>,
+                    _ => panic!("Unable to parse sub block with command: {:?}", hl.command)
                 }
             })
             .collect();
@@ -145,15 +151,38 @@ impl PlaParser {
                     .filter(|sb| {
                         sb.get_command() == PlaCommand::START
                         || sb.get_command() == PlaCommand::CHILD
+                        || sb.get_command() == PlaCommand::DURATION
+                        || sb.get_command() == PlaCommand::DEPENDENCY
                     })
                     .for_each (|sb| {
                         match sb.get_command() {
                             PlaCommand::START => {
                                 let pla_start = PlaStartBlock::try_from(sb);
                                 if pla_start.is_err() {
-                                    panic!("Encountered an error while trying to create hierarchicial entries: {}", pla_start.err().unwrap());
+                                    panic!("Encountered an error while trying to create hierarchical entries: {}", pla_start.err().unwrap());
                                 }
                                 entry_sb.push(Box::new(pla_start.unwrap()));
+                            },
+                            PlaCommand::CHILD => {
+                                let pla_child = PlaChildBlock::try_from(sb);
+                                if pla_child.is_err() {
+                                    panic!("Encountered an error while trying to create hierarchical entries: {}", pla_child.err().unwrap());
+                                }
+                                entry_sb.push(Box::new(pla_child.unwrap()));
+                            },
+                            PlaCommand::DURATION => {
+                              let pla_duration = PlaDurationBlock::try_from(sb);
+                                if pla_duration.is_err() {
+                                    panic!("Encountered an error while trying to create hierarchical entries: {}", pla_duration.err().unwrap());
+                                }
+                                entry_sb.push(Box::new(pla_duration.unwrap()));
+                            },
+                            PlaCommand::DEPENDENCY => {
+                                let pla_depend = PlaDependencyBlock::try_from(sb);
+                                if pla_depend.is_err() {
+                                    panic!("Encountered an error while trying to create hierarchical entries: {}", pla_depend.err().unwrap());
+                                }
+                                entry_sb.push(Box::new(pla_depend.unwrap()));
                             },
                             _ => {}
                         }
@@ -340,7 +369,7 @@ mod tests {
 
         println!("{:?}", pla_parser.get_entry_by_id(10000).unwrap());
         println!("{:?}", pla_parser.get_entry_by_id(122).unwrap());
-        assert!(!pla_parser.get_entry_by_id(10000).unwrap().has_children());
+        assert!(pla_parser.get_entry_by_id(10000).unwrap().has_children());
         assert!(pla_parser.get_entry_by_id(122).unwrap().has_children());
     }
 

@@ -1,7 +1,5 @@
 use std::fmt::{Debug, Formatter};
-use std::ops::Deref;
-use chrono::NaiveDate;
-use crate::pla::sub_blocks::{PlaStartBlock, PlaSubBlock};
+use crate::pla::sub_blocks::{PlaSubBlock};
 
 pub struct PlaEntry {
     pub id: u32,
@@ -49,9 +47,7 @@ impl Debug for PlaEntry {
         use std::fmt::Write;
         let children_str: String = match &self.children {
             Some(x) => {
-                for next_child in x {
-                    write!(target_string, "{:?}", x).unwrap();
-                }
+                write!(target_string, "{:?}", x).unwrap();
 
                 target_string
             },
@@ -59,5 +55,24 @@ impl Debug for PlaEntry {
         };
 
         write!(f, "PlaEntry ({:?}), description: {:?}, children: {:?}", self.id, self.description, children_str)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::pla::entry::PlaEntry;
+
+    #[test]
+    fn it_should_be_able_to_clone_an_entry_with_no_children() {
+        let entry = PlaEntry {
+            id: 196,
+            description: "No Operation".to_string(),
+            children: None
+        };
+
+        let cloned_entry = entry.clone();
+        assert_eq!(196, cloned_entry.id);
+        assert_eq!(String::from("No Operation"), cloned_entry.description);
+        assert!(cloned_entry.children.is_none());
     }
 }

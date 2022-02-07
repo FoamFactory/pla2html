@@ -1,4 +1,3 @@
-use std::fmt::{Display, Formatter};
 use std::str::FromStr;
 use crate::pla::error::PlaParseError;
 
@@ -12,12 +11,6 @@ pub enum PlaCommand {
     START,
     UNKNOWN,
 }
-
-// impl Display for PlaCommand {
-//     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-//         write!(f, "{}", self.to_string())
-//     }
-// }
 
 impl ToString for PlaCommand {
     fn to_string(&self) -> String {
