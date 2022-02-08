@@ -5,11 +5,14 @@
 [121] Carbonation
     duration 2
     start 2021-01-8 10
+    res Keg 1
 
 [122] Carbonation Clean (CO2 Tank 5Lb G10 1)
     duration 0
     dep 121
     start 2021-01-11 11
+    res Clean In Place Cart
+    res Keg 1
 
 [126] No Operation
 

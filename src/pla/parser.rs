@@ -4,9 +4,10 @@ use std::io::{Error, Read};
 use std::path::Path;
 use std::str::FromStr;
 use regex::Regex;
+use crate::{box_from_upcast, push_entry_sub_block};
 use crate::pla::command::PlaCommand;
 use crate::pla::entry::PlaEntry;
-use crate::pla::sub_blocks::{PlaChildBlock, PlaDependencyBlock, PlaDurationBlock, PlaStartBlock, PlaSubBlock};
+use crate::pla::sub_blocks::{PlaChildBlock, PlaDependencyBlock, PlaDurationBlock, PlaResourceBlock, PlaStartBlock, PlaSubBlock};
 
 pub struct PlaParser {
     pub entries: Vec<PlaEntry>,
@@ -126,13 +127,15 @@ impl PlaParser {
                 x.command == PlaCommand::START
                     || x.command == PlaCommand::CHILD
                     || x.command == PlaCommand::DURATION
-                    || x.command == PlaCommand::DEPENDENCY)
+                    || x.command == PlaCommand::DEPENDENCY
+                    || x.command == PlaCommand::RESOURCE)
             .map(|hl| {
                 match hl.command {
-                    PlaCommand::START => Box::new(PlaStartBlock::try_from(&hl).unwrap()) as Box<dyn PlaSubBlock>,
-                    PlaCommand::CHILD => Box::new(PlaChildBlock::try_from(&hl).unwrap()) as Box<dyn PlaSubBlock>,
-                    PlaCommand::DURATION => Box::new(PlaDurationBlock::try_from(&hl).unwrap()) as Box<dyn PlaSubBlock>,
-                    PlaCommand::DEPENDENCY => Box::new(PlaDependencyBlock::try_from(&hl).unwrap()) as Box<dyn PlaSubBlock>,
+                    PlaCommand::START => box_from_upcast!{PlaStartBlock, hl},
+                    PlaCommand::CHILD => box_from_upcast!{PlaChildBlock, hl},
+                    PlaCommand::DURATION => box_from_upcast!{PlaDurationBlock, hl},
+                    PlaCommand::RESOURCE => box_from_upcast!{PlaResourceBlock, hl},
+                    PlaCommand::DEPENDENCY => box_from_upcast!{PlaDependencyBlock, hl},
                     _ => panic!("Unable to parse sub block with command: {:?}", hl.command)
                 }
             })
@@ -153,36 +156,24 @@ impl PlaParser {
                         || sb.get_command() == PlaCommand::CHILD
                         || sb.get_command() == PlaCommand::DURATION
                         || sb.get_command() == PlaCommand::DEPENDENCY
+                        || sb.get_command() == PlaCommand::RESOURCE
                     })
                     .for_each (|sb| {
                         match sb.get_command() {
                             PlaCommand::START => {
-                                let pla_start = PlaStartBlock::try_from(sb);
-                                if pla_start.is_err() {
-                                    panic!("Encountered an error while trying to create hierarchical entries: {}", pla_start.err().unwrap());
-                                }
-                                entry_sb.push(Box::new(pla_start.unwrap()));
+                                push_entry_sub_block!{PlaStartBlock, sb, entry_sb}
                             },
                             PlaCommand::CHILD => {
-                                let pla_child = PlaChildBlock::try_from(sb);
-                                if pla_child.is_err() {
-                                    panic!("Encountered an error while trying to create hierarchical entries: {}", pla_child.err().unwrap());
-                                }
-                                entry_sb.push(Box::new(pla_child.unwrap()));
+                                push_entry_sub_block!{PlaChildBlock, sb, entry_sb}
                             },
                             PlaCommand::DURATION => {
-                              let pla_duration = PlaDurationBlock::try_from(sb);
-                                if pla_duration.is_err() {
-                                    panic!("Encountered an error while trying to create hierarchical entries: {}", pla_duration.err().unwrap());
-                                }
-                                entry_sb.push(Box::new(pla_duration.unwrap()));
+                                push_entry_sub_block!{PlaDurationBlock, sb, entry_sb}
                             },
                             PlaCommand::DEPENDENCY => {
-                                let pla_depend = PlaDependencyBlock::try_from(sb);
-                                if pla_depend.is_err() {
-                                    panic!("Encountered an error while trying to create hierarchical entries: {}", pla_depend.err().unwrap());
-                                }
-                                entry_sb.push(Box::new(pla_depend.unwrap()));
+                                push_entry_sub_block!{PlaDependencyBlock, sb, entry_sb}
+                            },
+                            PlaCommand::RESOURCE => {
+                                push_entry_sub_block!{PlaResourceBlock, sb, entry_sb}
                             },
                             _ => {}
                         }
@@ -218,7 +209,6 @@ impl PlaParser {
         let mut map: HashMap<u32, usize> = HashMap::new();
         let entries_with_id: Vec<PlaEntry> = entries
             .into_iter()
-            // .filter(|e| !e.id.is_empty())
             .map(|e| PlaEntry {
                 id: e.id.clone(),
                 description: e.description.clone(),

@@ -6,6 +6,38 @@ use crate::pla::error::{PlaSubBlockConversionError, PlaParseError};
 use crate::pla::parser::{HeirarchicalPlaLine};
 
 use dyn_clone::{clone_trait_object, DynClone};
+use regex::Regex;
+
+#[macro_export]
+macro_rules! try_from_box {
+    ( $x:ident ) => {
+        impl TryFrom<Box<dyn PlaSubBlock>> for $x {
+            type Error = PlaSubBlockConversionError;
+
+            fn try_from(value: Box<dyn PlaSubBlock>) -> Result<Self, Self::Error> {
+                $x::try_from(&value)
+            }
+        }
+    };
+}
+
+#[macro_export]
+macro_rules! box_from_upcast {
+    ( $x:ident, $hl:expr ) => {
+        Box::new($x::try_from(&$hl).unwrap()) as Box<dyn PlaSubBlock>
+    };
+}
+
+#[macro_export]
+macro_rules! push_entry_sub_block {
+    ( $x:ident, $sb:expr, $entry_sb:expr) => {
+        let block = $x::try_from($sb);
+        if block.is_err() {
+            panic!("Encountered an error while trying to create hierarchical entries: {}", block.err().unwrap());
+        }
+        $entry_sb.push(Box::new(block.unwrap()));
+    };
+}
 
 pub trait PlaSubBlock: mopa::Any + DynClone {
     fn get_command(&self) -> PlaCommand;
@@ -55,9 +87,95 @@ impl std::fmt::Debug for Box<dyn PlaSubBlock> {
                     String::from("ERROR")
                 }
             },
+            PlaCommand::RESOURCE => {
+                let res_res = PlaResourceBlock::try_from(self);
+                if res_res.is_ok() {
+                    let resource = res_res.unwrap();
+                    String::from(format!("RESOURCE {:?}", resource.resource_name))
+                } else {
+                    String::from("ERROR")
+                }
+            },
             _ => String::from("ERROR")
         };
         write!(f, "{:?}", &str_rep)
+    }
+}
+
+#[derive(Clone, Debug)]
+pub struct PlaResourceBlock {
+    pub parent_id: u32,
+    pub resource_name: String
+}
+
+impl PlaSubBlock for PlaResourceBlock {
+    fn get_command(&self) -> PlaCommand {
+        PlaCommand::RESOURCE
+    }
+
+    fn get_parent_id(&self) -> u32 {
+        self.parent_id
+    }
+}
+
+try_from_box!{PlaResourceBlock}
+
+impl TryFrom<&Box<dyn PlaSubBlock>> for PlaResourceBlock {
+    type Error = PlaSubBlockConversionError;
+
+    fn try_from(value: &Box<dyn PlaSubBlock>) -> Result<Self, Self::Error> {
+        if value.get_command() != PlaCommand::RESOURCE {
+            return Err(PlaSubBlockConversionError {
+                initial_type: PlaCommand::RESOURCE
+            });
+        }
+
+        let converted_opt: Option<&PlaResourceBlock> = value.downcast_ref::<PlaResourceBlock>();
+
+        if converted_opt.is_none() {
+            return Err(PlaSubBlockConversionError {
+                initial_type: PlaCommand::RESOURCE
+            });
+        }
+
+        let dc_ref = converted_opt.unwrap();
+        Ok(PlaResourceBlock {
+            parent_id: dc_ref.parent_id,
+            resource_name: String::from(&dc_ref.resource_name)
+        })
+    }
+}
+
+impl TryFrom<&HeirarchicalPlaLine> for PlaResourceBlock {
+    type Error = PlaParseError;
+
+    fn try_from(value: &HeirarchicalPlaLine) -> Result<Self, Self::Error> {
+        let str_command = value.text.trim_start();
+        match value.parent_id {
+            Some(x) => {
+                match PlaResourceBlock::try_from((x, str_command)) {
+                    Ok(x) => Ok(x),
+                    Err(_) => Err(PlaParseError{ message: String::from("resource block parsing failed")}),
+                }
+            },
+            None => Err(PlaParseError{ message: String::from("Unable to parse HeirarchicalPlaLine without parent id as PlaResourceBlock") }),
+        }
+    }
+}
+
+impl TryFrom<(u32, &str)> for PlaResourceBlock {
+    type Error = PlaParseError;
+
+    fn try_from(value: (u32, &str)) -> Result<Self, Self::Error> {
+        let (parent_id, command_text) = value;
+        let res_re = Regex::new(r"res(\s)+(.*)").unwrap();
+        let captures = res_re.captures(command_text).unwrap();
+        let resource_name = format!("{}", &captures[2]);
+
+        return Ok(PlaResourceBlock {
+            parent_id,
+            resource_name
+        });
     }
 }
 
@@ -103,13 +221,7 @@ impl TryFrom<&Box<dyn PlaSubBlock>> for PlaDependencyBlock {
     }
 }
 
-impl TryFrom<Box<dyn PlaSubBlock>> for PlaDependencyBlock {
-    type Error = PlaSubBlockConversionError;
-
-    fn try_from(value: Box<dyn PlaSubBlock>) -> Result<Self, Self::Error> {
-        PlaDependencyBlock::try_from(&value)
-    }
-}
+try_from_box!{PlaDependencyBlock}
 
 impl TryFrom<&HeirarchicalPlaLine> for PlaDependencyBlock {
     type Error = PlaParseError;
@@ -196,13 +308,7 @@ impl TryFrom<&Box<dyn PlaSubBlock>> for PlaStartBlock {
     }
 }
 
-impl TryFrom<Box<dyn PlaSubBlock>> for PlaStartBlock {
-    type Error = PlaSubBlockConversionError;
-
-    fn try_from(value: Box<dyn PlaSubBlock>) -> Result<Self, Self::Error> {
-        PlaStartBlock::try_from(&value)
-    }
-}
+try_from_box!{PlaStartBlock}
 
 impl TryFrom<&HeirarchicalPlaLine> for PlaStartBlock {
     type Error = PlaParseError;
@@ -263,13 +369,7 @@ pub struct PlaDurationBlock {
     pub duration: u32,
 }
 
-impl TryFrom<Box<dyn PlaSubBlock>> for PlaDurationBlock {
-    type Error = PlaSubBlockConversionError;
-
-    fn try_from(value: Box<dyn PlaSubBlock>) -> Result<Self, Self::Error> {
-        PlaDurationBlock::try_from(&value)
-    }
-}
+try_from_box!{PlaDurationBlock}
 
 impl TryFrom<&Box<dyn PlaSubBlock>> for PlaDurationBlock {
     type Error = PlaSubBlockConversionError;
@@ -363,13 +463,7 @@ impl PlaSubBlock for PlaChildBlock {
     }
 }
 
-impl TryFrom<Box<dyn PlaSubBlock>> for PlaChildBlock {
-    type Error = PlaSubBlockConversionError;
-
-    fn try_from(value: Box<dyn PlaSubBlock>) -> Result<Self, Self::Error> {
-        PlaChildBlock::try_from(&value)
-    }
-}
+try_from_box!{PlaChildBlock}
 
 impl TryFrom<&Box<dyn PlaSubBlock>> for PlaChildBlock {
     type Error = PlaSubBlockConversionError;
